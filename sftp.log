@@ -1,0 +1,25 @@
+Aug 29 15:52:47 10.71.56.0 tmp103260293-3134 Connection from 10.71.56.0 port 41342 on 82.165.87.241 port 22
+Aug 29 15:52:47 10.71.56.0 tmp103260293-3134 Accepted password for tmp103260293-3134 from 10.71.56.0 port 41342 ssh2
+Aug 29 15:52:47 10.71.56.0 tmp103260293-3134 Starting session: subsystem 'sftp' for tmp103260293-3134 from 10.71.56.0 port 41342 id 0
+Aug 29 15:52:47 10.71.56.0 tmp103260293-3134 session opened for local user tmp103260293-3134 from [10.71.56.0]
+Aug 29 16:21:09 10.71.57.0 u103260293 Connection from 10.71.57.0 port 17228 on 82.165.87.241 port 22
+Aug 29 16:21:09 10.71.57.0 u103260293 Accepted password for u103260293 from 10.71.57.0 port 17228 ssh2
+Aug 29 16:21:09 10.71.57.0 u103260293 Starting session: subsystem 'sftp' for u103260293 from 10.71.57.0 port 17228 id 0
+Aug 29 16:21:09 10.71.57.0 u103260293 session opened for local user u103260293 from [10.71.57.0]
+Aug 29 16:21:28 10.71.57.0 u103260293 Connection from 10.71.57.0 port 17288 on 82.165.87.241 port 22
+Aug 29 16:21:28 10.71.57.0 u103260293 Accepted password for u103260293 from 10.71.57.0 port 17288 ssh2
+Aug 29 16:21:28 10.71.57.0 u103260293 Starting session: subsystem 'sftp' for u103260293 from 10.71.57.0 port 17288 id 0
+Aug 29 16:21:28 10.71.57.0 u103260293 session opened for local user u103260293 from [10.71.57.0]
+Aug 29 16:21:28 10.71.57.0 u103260293 open "/.htaccess" flags WRITE,CREATE,TRUNCATE mode 0666
+Aug 29 16:21:28 10.71.57.0 u103260293 close "/.htaccess" bytes read 0 written 159
+Aug 29 16:21:28 10.71.57.0 u103260293 [10.71.57.0|put|0|159|0|0|0|2f2e6874616363657373|]
+Aug 29 16:21:56 10.71.57.0 u103260293 open "/models/Model.php" flags WRITE,CREATE,TRUNCATE mode 0666
+Aug 29 16:21:56 10.71.57.0 u103260293 close "/models/Model.php" bytes read 0 written 756
+Aug 29 16:21:56 10.71.57.0 u103260293 [10.71.57.0|put|0|756|0|0|0|2f6d6f64656c732f4d6f64656c2e706870|]
+Aug 29 16:22:56 10.71.57.0 u103260293 Connection closed by 10.71.57.0 port 17288
+Aug 29 16:22:56 10.71.57.0 u103260293 session closed for local user u103260293 from [10.71.57.0]
+Aug 29 16:25:31 10.71.57.0 u103260293 Connection from 10.71.57.0 port 18980 on 82.165.87.241 port 22
+Aug 29 16:25:32 10.71.57.0 u103260293 Accepted password for u103260293 from 10.71.57.0 port 18980 ssh2
+Aug 29 16:25:32 10.71.57.0 u103260293 Starting session: subsystem 'sftp' for u103260293 from 10.71.57.0 port 18980 id 0
+Aug 29 16:25:32 10.71.57.0 u103260293 session opened for local user u103260293 from [10.71.57.0]
+Aug 29 16:25:32 10.71.57.0 u103260293 open "/logs/sftp.log" flags READ mode 0666
