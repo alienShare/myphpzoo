@@ -25,15 +25,17 @@ try {
                 switch ($url[1]) {
                    
                     case 'animaux':
-                        if(!isset($url[2]) || !isset($url[3])){
+                       /*  if(!isset($url[2]) || !isset($url[3])){
                         $ApiController->getAnimaux(-1, -1);
                         }else{
                             $ApiController->getAnimaux((int)$url[2], (int)$url[3]);
-                        }
+                        } */
+                        echo "case animaux";
                         break;
                         case 'animal':
-                        if(empty($url[2])) throw new Exception("Identifiant incorrect");
-                        $ApiController->getAnimal($url[2]);
+                       /*  if(empty($url[2])) throw new Exception("Identifiant incorrect");
+                        $ApiController->getAnimal($url[2]); */
+                        echo "case animal";
                         break;
                         case 'continents':
                         $ApiController->getContinents();
