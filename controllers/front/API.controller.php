@@ -57,4 +57,21 @@ require_once "models/Model.php";
         Model::sendJSON($families);
 
     }
+    public function sendMessage(){
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Method: POST, GET, OPTIONS, PUT, DELETE");
+        header("Access-Control-Allow-Headers: Accept, Content-type, Content-Length, Accept-Encoding, X-CSRF-Token, AUthorization");
+        header("Content-Type: application/json");
+        $obj = json_decode(file_get_contents('php://input'));
+        $messageRetour = [
+            'from'=> $obj->email,
+            'to'=> "alient4@hotmail.com"
+        ];
+        $to = "alient4@hotmail.com";
+        $message = $obj->contenu;
+        $subject = "message de la plateforme";
+        $headers = "from : ".$obj->email;
+        mail($to, $subject, $message, $headers);
+        echo json_encode($messageRetour);
+    }
 }

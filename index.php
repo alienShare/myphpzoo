@@ -1,15 +1,18 @@
 <?php 
-//http://localhost/...
-//https://www.h2prog.com/...
+session_start(); // pour les variables de session
 define("URL", str_replace("index.php","",(isset($_SERVER['HTTPS']) ? "https" : "http").
 "://$_SERVER[HTTP_HOST]$_SERVER[PHP_SELF]"));
 
 // recup fichiers
 require_once "controllers/front/API.controller.php";
-$ApiController = new APIController();
+require_once "controllers/back/admin.controller.php";
+require_once "controllers/back/famille.controller.php";
 
-try {
-    echo "la page ".URL. $_GET['page'];
+$ApiController = new APIController();
+$adminController = new AdminController();
+$familleController = new FamilleController();
+
+try {    
     
     if(empty($_GET['page'])){
         throw new Exception("La page n'existe pas");
@@ -21,27 +24,28 @@ try {
         }
         switch ($url[0]) {
             case 'front':
-
-                switch ($url[1]) {
-                   
+                switch ($url[1]) {                   
                     case 'animaux':
-                       /*  if(!isset($url[2]) || !isset($url[3])){
+                       if(!isset($url[2]) || !isset($url[3])){
                         $ApiController->getAnimaux(-1, -1);
                         }else{
                             $ApiController->getAnimaux((int)$url[2], (int)$url[3]);
-                        } */
-                        echo "case animaux";
+                        }
+                        
                         break;
                         case 'animal':
-                       /*  if(empty($url[2])) throw new Exception("Identifiant incorrect");
-                        $ApiController->getAnimal($url[2]); */
-                        echo "case animal";
+                        if(empty($url[2])) throw new Exception("Identifiant incorrect");
+                        $ApiController->getAnimal($url[2]);
+                        
                         break;
                         case 'continents':
                         $ApiController->getContinents();
                         break;
                         case 'familles':
                         $ApiController->getFamilles();
+                        break;
+                        case 'sendMessage':
+                            $ApiController->sendMessage();
                         break;
                     
                     default:
@@ -50,9 +54,40 @@ try {
                 }
                 break;
             case 'back':
-                echo "Le back";
-                break;
-            
+                switch ($url[1]) {
+                    case 'login':
+                        $adminController->getPageLogin();
+                        break;
+                    case 'connection':
+                        $adminController->connection();
+                        break;
+                    case 'admin':
+                        $adminController->getAccueilAdmin();
+                        break;
+                    case 'logout':
+                        $adminController->logout();
+                        break;
+                    case 'familles':
+                        switch ($url[2]) {
+                            case 'visualisation':
+                                $familleController->visualisation();
+                                break;
+                            case 'creation':
+                            echo 'creation';        
+                            break;
+                            case 'validationSuppression':
+                                $familleController->supprimerFamille();
+                                break;
+                                default: throw new Exception("La page n'existe pas");
+                        }
+                        
+                        break;
+                        default:
+                        throw new Exception("La page n'existe pas");
+                        break;
+                    }
+                
+            break;
             default:
                 throw new Exception("La page n'existe pas dans le switch");
                 break;
@@ -61,5 +96,6 @@ try {
 } catch (Exception $e) {
     $msg = $e->getMessage();
     echo $msg;
+    echo "<a href='".URL."back/login'>login</a>";
 }
 
