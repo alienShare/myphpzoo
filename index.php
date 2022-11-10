@@ -73,12 +73,19 @@ try {
                                 $familleController->visualisation();
                                 break;
                             case 'creation':
-                            echo 'creation';        
+                                $familleController->creationFamilleTemplate();      
+                            break;
+                            case 'creationFamilleValidation':
+                                $familleController->createFamilly(); 
                             break;
                             case 'validationSuppression':
                                 $familleController->supprimerFamille();
                                 break;
-                                default: throw new Exception("La page n'existe pas");
+                                
+                            case 'validationModification':
+                                $familleController->modifierFamille();
+                                break;
+                            default: throw new Exception("La page n'existe pas");
                         }
                         
                         break;

@@ -9,6 +9,45 @@ class FamilleController{
      $this->familleManager = new FamilleManager();   
     }
    
+    public function createFamilly(){
+        
+        if(Security::checkAccessSession()){
+            $familleLibelle = Security::secureHTML($_POST['famille_libelle']);
+            $familleDescription = Security::secureHTML($_POST['famille_description']);
+            $idFamille = $this->familleManager->createFamille($familleLibelle, $familleDescription);
+            $_SESSION['alert'] = [
+                "message"=>"La famille a bien été créée avec l'identifiant " .$idFamille,
+                "type"=>"alert-success"
+            ];
+            header('Location: '.URL.'back/familles/visualisation');
+        }else{
+            throw new Exception("Vous devez vous connecter pour créer une famille");
+        }
+        
+    }
+    public function creationFamilleTemplate(){
+        if(Security::checkAccessSession()){
+            require_once "views/familleCreation.view.php";  
+        }else{
+            throw new Exception("Vous devez vous connecter pour créer une famille");
+        }        
+    }
+    public function modifierFamille(){
+        if(Security::checkAccessSession()){
+            $familleId = (int)Security::secureHTML($_POST['famille_id']);
+            $familleLibelle = Security::secureHTML($_POST['famille_libelle']);
+            $familleDescription = $_POST['famille_description'];
+            $responseLibelle = $this->familleManager->updateFamille($familleId, $familleLibelle, $familleDescription);
+            
+            $_SESSION['alert'] = [
+                "message" => "La famille ". $responseLibelle['famille_libelle'] . " a bien été modifiée",
+                "type"=> "alert-success"
+            ];
+           header('Location: '.URL.'back/familles/visualisation');
+        }else{
+            throw new Exception("Vous n'avez pas le droit d'etre là");
+        }
+    }
     public function supprimerFamille(){
         if(Security::checkAccessSession()){
         
@@ -31,6 +70,8 @@ class FamilleController{
            
         }
         header('Location: '.URL.'back/familles/visualisation');
+    }else{
+        throw new Exception("Vous n'avez pas le droit d'etre là");
     }
 }
     public function visualisation(){
